@@ -1,5 +1,7 @@
 <?php
 
+use \App\Http\Controllers\Controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,14 +13,7 @@
 |
 */
 
-Route::get('/', function () {
-	return view('pages/home');
-});
 
-Route::get('/team', function () {
-	return view('pages/team');
-});
-
-Route::get('/progress', function () {
-	return view('pages/progress');
-});
+Route::get('/', Controller::class . '@home')->name('home');
+Route::get('/team', Controller::class . '@team')->name('team');
+Route::get('/progress', Controller::class . '@progress')->name('progress');

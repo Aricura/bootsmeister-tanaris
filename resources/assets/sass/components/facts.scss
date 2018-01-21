@@ -1,0 +1,13 @@
+// variables
+@import "../variables";
+
+.facts {
+    li {
+        padding: 0.5em 0;
+        font-size: 1.2em;
+
+        i {
+            margin-right: 1em;
+        }
+    }
+}

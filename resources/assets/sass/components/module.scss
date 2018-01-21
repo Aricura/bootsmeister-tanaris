@@ -1,0 +1,36 @@
+// variables
+@import "../variables";
+
+.module {
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    &--fullscreen {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
+
+    &--text {
+        margin: 8em 0;
+
+        @media screen and (max-width: 768px) {
+            margin: 3em 0;
+        }
+    }
+
+    &--background {
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #777;
+    }
+
+    &--parallax {
+        background-attachment: fixed;
+    }
+
+    .overlay {
+        background: url("/images/icons/gridtile.png") repeat;
+    }
+}
