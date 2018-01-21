@@ -11,5 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
+// copy all custom images
+mix.copy('resources/assets/images', 'public/images', false);
+
+// generic javascript and stylesheet including vendors
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
