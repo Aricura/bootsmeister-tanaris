@@ -15,3 +15,5 @@ use \App\Http\Controllers\Controller;
 
 
 Route::get('/', Controller::class . '@home')->name('home');
+
+Route::post('recruitment', Controller::class . '@recruitment');

@@ -133,7 +133,7 @@ class Controller extends BaseController {
 		$rules = [
 			'bnet' => "required|string|min:3|max:50",
 			'armory' => "required|string|min:30|max:70",
-			'spec' => "required|in:character_specs,id",
+			'spec' => "required|exists:character_specs,id",
 			'exp' => "required|string|min:10|max:1000"
 		];
 

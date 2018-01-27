@@ -7,7 +7,7 @@
 
 	<title>{{ config('app.name') }}</title>
 
-	<link rel="shortcut icon" type="image/png" href="#">
+	<link rel="shortcut icon" type="image/png" href="{{ asset('images/brand/bootsmeister-tanaris-fav.png') }}">
 
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<script type="text/javascript">window.Laravel = {"csrfToken": "{{ csrf_token() }}"};</script>
