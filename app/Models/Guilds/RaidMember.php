@@ -104,4 +104,19 @@ class RaidMember extends Model {
 		// return the raid member information
 		return $raidMember;
 	}
+
+	/**
+	 * Returns all raid members with the specified role in raid.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @param string $role
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public static function getByRole(string $role) {
+		return self::query()
+			->join('character_specs', 'character_specs.id', '=', 'raid_members.character_spec_id')
+			->where('character_specs.role', '=', $role)
+			->get();
+	}
 }

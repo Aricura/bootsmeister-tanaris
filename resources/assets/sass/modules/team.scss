@@ -2,5 +2,139 @@
 @import "../variables";
 
 .module--team {
+    background-size: cover;
+    background: #777777 url('/images/background/tanaris.jpg') no-repeat fixed center center;
+    padding: 6em 0 8em;
 
+    h2 {
+        color: $text-color-inverse;
+    }
+
+    hr {
+        margin-bottom: 5em;
+    }
+
+
+    .carousel {
+        padding: .2em;
+        border: 1px solid #777777;
+        background: rgba(255, 255, 202550, 0.5);
+
+        &-caption {
+            &--top-left {
+                top: 5%;
+                left: 5%;
+                right: auto;
+                bottom: auto;
+                text-align: left;
+            }
+
+            &--bottom-left {
+                top: auto;
+                left: 5%;
+                right: auto;
+                bottom: 0;
+                text-align: left;
+            }
+
+            &--bottom-right {
+                top: auto;
+                left: auto;
+                right: 5%;
+                bottom: 0;
+                text-align: right;
+            }
+
+            h3,
+            p:not(.class-color),
+            small {
+                display: block;
+                color: $text-color-inverse;
+            }
+
+            h3 {
+                position: relative;
+                width: auto;
+                padding-right: 30px;
+                line-height: 1;
+                margin-bottom: .3em;
+
+                img {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            a {
+                font-weight: 400;
+            }
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        &-control {
+            background-image: none;
+            left: 35%;
+            top: auto;
+            bottom: 10%;
+
+            &.right {
+                left: auto;
+                right: 35%;
+            }
+
+            span {
+                color: $text-color-inverse;
+            }
+        }
+    }
+
+
+    .team-list {
+        background: url("/images/icons/gridtile.png") repeat;
+        border: 1px solid #000;
+
+        .list-group-item {
+            position: relative;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #000;
+            margin: 0;
+            padding-left: calc(1em + 50px);
+            cursor: pointer;
+
+            strong {
+                text-transform: uppercase;
+                color: $text-color-inverse;
+            }
+
+            .class-icon,
+            .spec-icon {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 24px;
+                height: auto;
+            }
+
+            .class-icon {
+                left: .3em;
+            }
+
+            .spec-icon {
+                left: calc(.6em + 25px);
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
 }

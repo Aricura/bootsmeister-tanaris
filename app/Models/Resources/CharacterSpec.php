@@ -137,6 +137,17 @@ class CharacterSpec extends Model {
 	}
 
 	/**
+	 * Returns the absolute path to the this spec's icon.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getIconUrl() {
+		return sprintf('https://render-eu.worldofwarcraft.com/icons/56/%s.jpg', Str::lower($this->icon));
+	}
+
+	/**
 	 * Deletes this spec and all connected raid members.
 	 *
 	 * @author Stefan Herndler

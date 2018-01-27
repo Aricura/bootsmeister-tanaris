@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guilds\RaidMember;
 use GuzzleHttp\Client;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -14,9 +15,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  * @class Controller
  * @package App\Http\Controllers
  */
-class Controller extends BaseController
-{
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+class Controller extends BaseController {
+
+	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	/**
 	 * Controller constructor.
@@ -26,7 +27,7 @@ class Controller extends BaseController
 	 */
 	public function __construct() {
 		// get the current wow progress ranking form the server's cache
-		$rank = (array) \Cache::get('wow-progress', []);
+		$rank = (array)\Cache::get('wow-progress', []);
 
 		// check if the cache is still valid
 		if (!\count($rank)) {
@@ -41,11 +42,10 @@ class Controller extends BaseController
 
 			// send the request and receive the response
 			try {
-				$rank = json_decode(strval($client->get($baseUrl.'/json_rank')->getBody()), true);
+				$rank = json_decode(strval($client->get($baseUrl . '/json_rank')->getBody()), true);
 				// append the base url to the rank
 				$rank['base_url'] = $baseUrl;
-			}
-			catch(\Exception $exception) {
+			} catch (\Exception $exception) {
 				\Log::error($exception->getMessage());
 				$rank = [];
 			}
@@ -65,7 +65,18 @@ class Controller extends BaseController
 	 * @since 1.0.0
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function home() {
-		return view('app');
+	public function home() {
+		// fetch all raid members sorted by their role in raid
+		$raidMemberCollection = [
+			'tank' => RaidMember::getByRole('tank'),
+			'melee' => RaidMember::getByRole('melee'),
+			'range' => RaidMember::getByRole('range'),
+			'heal' => RaidMember::getByRole('heal'),
+		];
+
+		// return the one pager view
+		return view('app', [
+			'raidMemberCollection' => $raidMemberCollection,
+		]);
 	}
 }

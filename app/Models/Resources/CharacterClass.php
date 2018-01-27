@@ -134,8 +134,8 @@ class CharacterClass extends Model {
 	 * @since 1.0.0
 	 * @return string
 	 */
-	public function getIconAttribute() {
-		return sprintf("%s/img/class-icons/%s.png", trim(env('APP_URL')), str_replace(" ", "-", Str::lower($this->name)));
+	public function getIconUrl() {
+		return sprintf('/images/icons/classes/%s.png', str_replace(' ', '-', Str::lower($this->name)));
 	}
 
 	/**

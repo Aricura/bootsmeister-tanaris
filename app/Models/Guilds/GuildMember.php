@@ -8,6 +8,7 @@ use App\Models\Resources\CharacterClass;
 use App\Models\Resources\CharacterRace;
 use App\Models\Resources\CharacterSpec;
 use App\Models\Resources\Realm;
+use Illuminate\Support\Str;
 
 /**
  * Model representing a single guild member.
@@ -190,6 +191,61 @@ class GuildMember extends Model {
 	 */
 	public function removeAsRaidMember() {
 		return RaidMember::findByGuildMember($this)->delete();
+	}
+
+	/**
+	 * Returns the absolute path to the thumbnail of the character.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getThumbnail() {
+		return sprintf('https://render-eu.worldofwarcraft.com/character/%s', $this->thumbnail);
+	}
+
+	/**
+	 * Returns the absolute path to the thumbnail of the character.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getProfilePicture() {
+		return str_replace('avatar', 'profilemain', $this->getThumbnail()) . '?alt=/wow/static/images/2d/profilemain/class/6-1.jpg';
+	}
+
+	/**
+	 * Returns the absolute path to the thumbnail of the character.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getProfilePictureInset() {
+		return str_replace('avatar', 'inset', $this->getThumbnail()) . '?alt=/wow/static/images/2d/profilemain/class/6-1.jpg';
+	}
+
+	/**
+	 * Returns the absolute url to the wow armory of this character.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getArmoryLink() {
+		return Str::lower(sprintf('https://worldofwarcraft.com/de-de/character/%s/%s', $this->Realm->name, $this->name));
+	}
+
+	/**
+	 * Returns the absolute url to the wow progress of this character.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function getWoWProgressLink() {
+		return Str::lower(sprintf('http://www.wowprogress.com/character/eu/%s/%s', $this->Realm->name, $this->name));
 	}
 
 	/**
