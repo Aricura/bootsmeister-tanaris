@@ -25,18 +25,37 @@ class Controller extends BaseController
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		// get wow progression of guid
-		$client = new Client();
-		// send the request and receive the response
-		try {
-			$response = $client->get("https://www.wowprogress.com/guild/eu/thrall/Bootsmeister+Tanaris+eV/json_rank");
-			$rank = json_decode(strval($response->getBody()), true);
-		} catch(\Exception $exception) {
-			\Log::error($exception->getMessage());
-			$rank = [];
+		// get the current wow progress ranking form the server's cache
+		$rank = (array) \Cache::get('wow-progress', []);
+
+		// check if the cache is still valid
+		if (!\count($rank)) {
+			// create the base url for this guild
+			$baseUrl = \sprintf(
+				'https://www.wowprogress.com/guild/eu/thrall/%s',
+				\str_replace(' ', '+', config('app.name'))
+			);
+
+			// fetch the new wow progress rank and update the cache
+			$client = new Client();
+
+			// send the request and receive the response
+			try {
+				$rank = json_decode(strval($client->get($baseUrl.'/json_rank')->getBody()), true);
+				// append the base url to the rank
+				$rank['base_url'] = $baseUrl;
+			}
+			catch(\Exception $exception) {
+				\Log::error($exception->getMessage());
+				$rank = [];
+			}
+
+			// update the cache
+			\Cache::put('wow-progress', $rank);
 		}
+
 		// global variables shared with all views
-		\View::share('guildRank', json_decode(json_encode($rank)));
+		\View::share('guildRank', $rank);
 	}
 
 	/**
@@ -47,37 +66,6 @@ class Controller extends BaseController
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
     public function home() {
-    	// build all slides
-		$slides = [
-			[
-				'src' => '/images/background/antorus-heroic-clear.jpg',
-				'caption' => 'Bootsmeister Tanaris eV',
-				'body' => '15.01.18 Antorus Heroic clear.',
-			],
-		];
-
-		return view('pages.home', ['slides' => $slides]);
-	}
-
-	/**
-	 * Team page.
-	 *
-	 * @author Stefan Herndler
-	 * @since 1.0.0
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function team() {
-		return view('pages.team');
-	}
-
-	/**
-	 * Progression page.
-	 *
-	 * @author Stefan Herndler
-	 * @since 1.0.0
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function progress() {
-		return view('pages.progress');
+		return view('app');
 	}
 }

@@ -24,17 +24,6 @@ use Illuminate\Support\Str;
 class Fraction extends Model {
 
 	/**
-	 * Fraction type enumeration.
-	 *
-	 * @author Stefan Herndler
-	 * @since 1.0.0
-	 * @var string
-	 */
-	public const HORDE = 'horde';
-	public const ALLIANCE = 'alliance';
-	public const NEUTRAL = 'neutral';
-
-	/**
 	 * The table associated with the model.
 	 *
 	 * @author Stefan Herndler
@@ -157,7 +146,7 @@ class Fraction extends Model {
 	 * @return \App\Models\Resources\Fraction|\Illuminate\Database\Eloquent\Model
 	 */
 	public static function findByIndex(int $index) {
-		return self::findBySlug($index === 1 ? self::HORDE : self::ALLIANCE);
+		return self::findBySlug($index === 1 ? 'horde' : 'alliance');
 	}
 
 	/**
@@ -188,9 +177,9 @@ class Fraction extends Model {
 	 * @return bool
 	 */
 	public static function seed() {
-		self::createModel(self::ALLIANCE);
-		self::createModel(self::HORDE);
-		self::createModel(self::NEUTRAL);
+		self::createModel('alliance');
+		self::createModel('horde');
+		self::createModel('neutral');
 		// fractions are successfully fetched / synchronized
 		return true;
 	}

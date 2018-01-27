@@ -9,15 +9,16 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Base
-@import "base/helper";
 @import "base/typography";
 @import "base/wow-classes";
-@import "base/header";
+@import "base/module";
 
-// Components
-@import "components/module";
-@import "components/icon";
-@import "components/carousel";
-@import "components/facts";
-@import "components/wow-progress";
-@import "components/progress-tile";
+// Modules
+@import "modules/carousel";
+@import "modules/header";
+@import "modules/wheel";
+@import "modules/progress";
+@import "modules/team";
+@import "modules/recruitment";
+@import "modules/footer";
+@import "modules/imprint";

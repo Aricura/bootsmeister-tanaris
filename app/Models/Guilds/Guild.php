@@ -6,7 +6,6 @@ use App\Models\Api\BattleNet;
 use App\Models\Model;
 use App\Models\Resources\CharacterClass;
 use App\Models\Resources\CharacterRace;
-use App\Models\Resources\CharacterSpec;
 use App\Models\Resources\Fraction;
 use App\Models\Resources\Realm;
 use Carbon\Carbon;
@@ -210,6 +209,7 @@ class Guild extends Model {
 			if (!array_key_exists('spec', $character) || !is_array($character['spec']) || !count($character['spec'])) {
 				continue;
 			}
+			/*
 			// extract all spec information
 			$characterSpec = $character['spec'];
 			// check if all required information of this spec exists
@@ -217,7 +217,8 @@ class Guild extends Model {
 				continue;
 			}
 			// create / update the character's spec
-			CharacterSpec::createModel($characterClass, $characterSpec['name'], $characterSpec['backgroundImage'], $characterSpec['icon']);
+			 CharacterSpec::createModel($characterClass, $characterSpec['name'], $characterSpec['backgroundImage'], $characterSpec['icon']);
+			*/
 		}
 
 		// delete all guild members which were not updated after this seed (last updated 1 day ago or older)

@@ -1,0 +1,101 @@
+// variables
+@import "../variables";
+
+.module--wow-progress {
+    background-size: cover;
+    background: #777777 url('/images/background/tanaris.jpg') no-repeat fixed center center;
+
+    .overlay {
+        background: url("/images/icons/gridtile.png") repeat;
+        padding: 5em 0;
+
+        .tier,
+        li,
+        a {
+            color: $text-color-inverse;
+        }
+
+        .tier {
+            font-size: 3em;
+        }
+
+        ul {
+            margin-bottom: 2em;
+
+            li {
+                font-size: 1.5em;
+                padding: 0 1em;
+            }
+        }
+    }
+}
+
+
+.module--progress {
+    padding: 6em 0;
+
+    .progress-tile {
+        border-radius: 0;
+        border: none;
+        padding: 0;
+        overflow: hidden;
+
+        > img {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            height: auto;
+            width: auto;
+            max-width: 130%;
+            max-height: 100%;
+        }
+
+        .caption {
+            border: 1px solid #ddd;
+            border-top: none;
+            transition: border 0.2s ease-in-out;
+
+            h3 {
+                text-align: center;
+                font-size: 1em;
+                margin-top: 1em;
+            }
+
+            ul {
+                text-align: center;
+
+                li {
+                    padding: 0 1em;
+
+                    .kills,
+                    .difficulty,
+                    .icon {
+                        display: block;
+                        margin-top: 5px;
+                    }
+
+                    .kills {
+                        font-weight: 600;
+                        font-size: 1.6em;
+                    }
+
+                    .icon {
+                        .glyphicon {
+                            &-ok {
+                                color: $brand-success;
+                            }
+
+                            &-hourglass {
+                                color: $brand-warning;
+                            }
+
+                            &-remove {
+                                color: $brand-danger;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

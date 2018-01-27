@@ -1,0 +1,36 @@
+// variables
+@import "../variables";
+
+.module--carousel {
+    max-width: 100vw;
+    max-height: calc(100vh - 100px);
+
+    .carousel {
+        &-inner {
+            .item {
+                max-height: calc(100vh - 100px);
+                overflow: hidden;
+            }
+        }
+
+        &-caption {
+            left: 5%;
+            right: auto;
+            bottom: 10%;
+            max-width: 50%;
+            padding: 10px 30px;
+            background-color: rgba(209, 83, 75, 0.8);
+
+            h1,
+            h2,
+            p {
+                text-align: left;
+                color: $text-color-inverse;
+            }
+
+            @media screen and (max-width: 768px) {
+                max-width: 90%;
+            }
+        }
+    }
+}

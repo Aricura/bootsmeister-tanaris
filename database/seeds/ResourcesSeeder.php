@@ -6,6 +6,7 @@ use \App\Models\Resources\Realm;
 use \App\Models\Resources\Fraction;
 use \App\Models\Resources\CharacterRace;
 use \App\Models\Resources\CharacterClass;
+use \App\Models\Resources\CharacterSpec;
 
 /**
  * Seeds all common resources.
@@ -28,5 +29,6 @@ class ResourcesSeeder extends Seeder {
 		Fraction::seed();
 		CharacterRace::seed();
 		CharacterClass::seed();
+		CharacterSpec::seed();
 	}
 }

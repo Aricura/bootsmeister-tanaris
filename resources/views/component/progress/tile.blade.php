@@ -1,46 +1,25 @@
 <div class="thumbnail progress-tile">
-	<img src="{{ asset('images/raids/' . \Illuminate\Support\Str::slug($raid) . '-small.jpg') }}" alt="{{ $raid }}">
+	{{-- Raid teaser image within the /images/raids/ folder --}}
+	<img src="{{ asset('/images/raids/' . \Illuminate\Support\Str::slug($raid) . '-small.jpg') }}" alt="{{ $raid }}">
+
+	{{-- Progress caption --}}
 	<div class="caption">
-		<h4>{{ $raid }}</h4>
+		<h3>{{ $raid }}</h3>
 		<ul class="list-unstyled list-inline">
+
+			{{-- Normal mode --}}
 			<li>
-				<span class="kills">{{ $nm }}</span>
-				<span class="difficulty">normal</span>
-				<span class="icon">
-					@if ($nm >= $bosses)
-						<i class="glyphicon glyphicon-ok"></i>
-					@elseif ($nm > 0)
-						<i class="glyphicon glyphicon-hourglass"></i>
-					@else
-						<i class="glyphicon glyphicon-remove"></i>
-					@endif
-				</span>
+				@include('component.progress.caption', ['mode' => 'normal', 'bosses' => $bosses, 'kills' => $nm])
 			</li>
+
+			{{-- Heroic mode --}}
 			<li>
-				<span class="kills">{{ $hm }}</span>
-				<span class="difficulty">heroic</span>
-				<span class="icon">
-					@if ($hm >= $bosses)
-						<i class="glyphicon glyphicon-ok"></i>
-					@elseif ($hm > 0)
-						<i class="glyphicon glyphicon-hourglass"></i>
-					@else
-						<i class="glyphicon glyphicon-remove"></i>
-					@endif
-				</span>
+				@include('component.progress.caption', ['mode' => 'heroic', 'bosses' => $bosses, 'kills' => $hm])
 			</li>
+
+			{{-- Mythic mode --}}
 			<li>
-				<span class="kills">{{ $mm }}</span>
-				<span class="difficulty">mythic</span>
-				<span class="icon">
-					@if ($mm >= $bosses)
-						<i class="glyphicon glyphicon-ok"></i>
-					@elseif ($mm > 0)
-						<i class="glyphicon glyphicon-hourglass"></i>
-					@else
-						<i class="glyphicon glyphicon-remove"></i>
-					@endif
-				</span>
+				@include('component.progress.caption', ['mode' => 'mythic', 'bosses' => $bosses, 'kills' => $mm])
 			</li>
 		</ul>
 	</div>

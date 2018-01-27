@@ -1,9 +1,19 @@
-<div class="item {{ $class }}">
-	<img src="{{ asset($slide['src']) }}" alt="{{ $slide['caption'] }}">
-	@if (\Illuminate\Support\Str::length($slide['caption']) > 0)
+<div class="item @if($first) active @endif">
+	{{-- Image within the /images/backgorund/ folder --}}
+	<img src="{{ asset('/images/background/'.$slide['src']) }}" alt="{{ $slide['caption'] }}">
+
+	{{-- Optional caption --}}
+	@if ('' !== $slide['caption'])
 		<div class="carousel-caption">
-			<h2>{{ $slide['caption'] }}</h2>
-			@if(\Illuminate\Support\Str::length($slide['body']) > 0)
+			{{-- H1 for the first slide --}}
+			@if($first)
+				<h1>{{ $slide['caption'] }}</h1>
+			@else
+				<h2 class="h1">{{ $slide['caption'] }}</h2>
+			@endif
+
+			{{-- Optional body text --}}
+			@if('' !== $slide['body'])
 				<p>{{ $slide['body'] }}</p>
 			@endif
 		</div>

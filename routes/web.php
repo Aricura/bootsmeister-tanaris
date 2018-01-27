@@ -15,5 +15,3 @@ use \App\Http\Controllers\Controller;
 
 
 Route::get('/', Controller::class . '@home')->name('home');
-Route::get('/team', Controller::class . '@team')->name('team');
-Route::get('/progress', Controller::class . '@progress')->name('progress');

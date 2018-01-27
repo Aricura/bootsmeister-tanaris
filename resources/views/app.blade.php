@@ -16,8 +16,16 @@
 
 </head>
 <body>
-	@include('header')
-	@yield('body')
+	<main>
+		@include('one-pager.carousel')
+		@include('one-pager.header')
+		@include('one-pager.wheel')
+		@include('one-pager.progress')
+		@include('one-pager.team')
+		@include('one-pager.recruitment')
+		@include('one-pager.footer')
+		@include('one-pager.imprint')
+	</main>
 </body>
 
 <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>

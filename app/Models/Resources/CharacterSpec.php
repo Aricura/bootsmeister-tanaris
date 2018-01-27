@@ -29,18 +29,6 @@ use Illuminate\Support\Str;
 class CharacterSpec extends Model {
 
 	/**
-	 * Character roles enumeration.
-	 *
-	 * @author Stefan Herndler
-	 * @since 1.0.0
-	 * @var string
-	 */
-	public const TANK = 'tank';
-	public const MELEE = 'melee';
-	public const RANGE = 'range';
-	public const HEAL = 'heal';
-
-	/**
 	 * The table associated with the model.
 	 *
 	 * @author Stefan Herndler
@@ -224,7 +212,8 @@ class CharacterSpec extends Model {
 			case 'brewmaster monk':
 			case 'protection paladin':
 			case 'protection warrior':
-				return self::TANK;
+				return 'tank';
+
 			// melee dps
 			case 'frost death knight':
 			case 'unholy death knight':
@@ -239,7 +228,8 @@ class CharacterSpec extends Model {
 			case 'enhancement shaman':
 			case 'arms warrior':
 			case 'fury warrior':
-				return self::MELEE;
+				return 'melee';
+
 			// range dps
 			case 'balance druid':
 			case 'beast mastery hunter':
@@ -252,7 +242,8 @@ class CharacterSpec extends Model {
 			case 'affliction warlock':
 			case 'demonology warlock':
 			case 'destruction warlock':
-				return self::RANGE;
+				return 'range';
+
 			// healer
 			case 'restoration druid':
 			case 'mistweaver monk':
@@ -260,10 +251,91 @@ class CharacterSpec extends Model {
 			case 'discipline priest':
 			case 'holy priest':
 			case 'restoration shaman':
-				return self::HEAL;
+				return 'heal';
 		}
+
 		// use tank as fallback if the spec name is unknown
 		\Log::warning(sprintf('Unknown role for: %s', $characterSpecClassName));
-		return self::TANK;
+		return 'tank';
+	}
+
+	/**
+	 * Seeds all character specs.
+	 *
+	 * @author Stefan Herndler
+	 * @since 1.0.0
+	 */
+	public static function seed() {
+		// death knight
+		$class = CharacterClass::findByName('Death Knight');
+		self::createModel($class, 'Blood', 'bg-deathknight-blood', 'spell_deathknight_bloodpresence');
+		self::createModel($class, 'Unholy', 'bg-deathknight-unholy', 'spell_deathknight_unholypresence');
+		self::createModel($class, 'Frost', 'bg-deathknight-frost', 'spell_deathknight_frostpresence');
+
+		// demon hunter
+		$class = CharacterClass::findByName('Demon Hunter');
+		self::createModel($class, 'Havoc', 'bg-rogue-subtlety', 'ability_demonhunter_specdps');
+		self::createModel($class, 'Vengeance', 'bg-warlock-demonology', 'ability_demonhunter_spectank');
+
+		// druid
+		$class = CharacterClass::findByName('Druid');
+		self::createModel($class, 'Guardian', 'bg-druid-bear', 'ability_racial_bearform');
+		self::createModel($class, 'Balance', 'bg-druid-balance', 'spell_nature_starfall');
+		self::createModel($class, 'Restoration', 'bg-druid-restoration', 'spell_nature_healingtouch');
+		self::createModel($class, 'Feral', 'bg-druid-cat', 'ability_druid_catform');
+
+		// hunter
+		$class = CharacterClass::findByName('Hunter');
+		self::createModel($class, 'Marksmanship', 'bg-hunter-marksman', 'ability_hunter_focusedaim');
+		self::createModel($class, 'Beast Mastery', 'bg-hunter-beastmaster', 'ability_hunter_bestialdiscipline');
+		self::createModel($class, 'Survival', 'bg-hunter-survival', 'ability_hunter_camouflage');
+
+		// mage
+		$class = CharacterClass::findByName('Mage');
+		self::createModel($class, 'Fire', 'bg-mage-fire', 'spell_fire_firebolt02');
+		self::createModel($class, 'Frost', 'bg-mage-frost', 'spell_frost_frostbolt02');
+		self::createModel($class, 'Arcane', 'bg-mage-arcane', 'spell_holy_magicalsentry');
+
+		// monk
+		$class = CharacterClass::findByName('Monk');
+		self::createModel($class, 'Windwalker', 'bg-monk-battledancer', 'spell_monk_windwalker_spec');
+		self::createModel($class, 'Mistweaver', 'bg-monk-mistweaver', 'spell_monk_mistweaver_spec');
+		self::createModel($class, 'Brewmaster', 'bg-monk-brewmaster', 'spell_monk_brewmaster_spec');
+
+		// paladin
+		$class = CharacterClass::findByName('Paladin');
+		self::createModel($class, 'Protection', 'bg-paladin-protection', 'ability_paladin_shieldofthetemplar');
+		self::createModel($class, 'Retribution', 'bg-paladin-retribution', 'spell_holy_auraoflight');
+		self::createModel($class, 'Holy', 'bg-paladin-holy', 'spell_holy_holybolt');
+
+		// priest
+		$class = CharacterClass::findByName('Priest');
+		self::createModel($class, 'Holy', 'bg-priest-holy', 'spell_holy_guardianspirit');
+		self::createModel($class, 'Shadow', 'bg-priest-shadow', 'spell_shadow_shadowwordpain');
+		self::createModel($class, 'Discipline', 'bg-priest-discipline', 'spell_holy_powerwordshield');
+
+		// rogue
+		$class = CharacterClass::findByName('Rogue');
+		self::createModel($class, 'Subtlety', 'bg-rogue-subtlety', 'ability_stealth');
+		self::createModel($class, 'Assassination', 'bg-rogue-assassination', 'ability_rogue_deadlybrew');
+		self::createModel($class, 'Outlaw', 'bg-rogue-combat', 'inv_sword_30');
+
+		// shaman
+		$class = CharacterClass::findByName('Shaman');
+		self::createModel($class, 'Enhancement', 'bg-shaman-enhancement', 'spell_shaman_improvedstormstrike');
+		self::createModel($class, 'Restoration', 'bg-shaman-restoration', 'spell_nature_magicimmunity');
+		self::createModel($class, 'Elemental', 'bg-shaman-elemental', 'spell_nature_lightning');
+
+		// warlock
+		$class = CharacterClass::findByName('Warlock');
+		self::createModel($class, 'Affliction', 'bg-warlock-affliction', 'spell_shadow_deathcoil');
+		self::createModel($class, 'Demonology', 'bg-warlock-demonology', 'spell_shadow_metamorphosis');
+		self::createModel($class, 'Destruction', 'bg-warlock-destruction', 'spell_shadow_rainoffire');
+
+		// warrior
+		$class = CharacterClass::findByName('Warrior');
+		self::createModel($class, 'Fury', 'bg-warrior-fury', 'ability_warrior_innerrage');
+		self::createModel($class, 'Protection', 'bg-warrior-protection', 'ability_warrior_defensivestance');
+		self::createModel($class, 'Arms', 'bg-warrior-arms', 'ability_warrior_savageblow');
 	}
 }
