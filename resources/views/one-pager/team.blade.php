@@ -1,4 +1,4 @@
-<section class="module module--team">
+<section class="module module--team" id="team">
 	<div class="container">
 
 		<h2>User Team</h2>

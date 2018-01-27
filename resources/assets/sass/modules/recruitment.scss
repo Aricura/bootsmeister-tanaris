@@ -2,5 +2,53 @@
 @import "../variables";
 
 .module--recruitment {
+    padding: 6em 0 8em;
 
+    hr {
+        margin-bottom: 5em;
+    }
+
+    .lead {
+        margin-bottom: .3em;
+    }
+
+    ul:not(.list-inline) {
+        margin-bottom: 2.5em;
+
+        li {
+            position: relative;
+            padding-left: 3em;
+            margin-bottom: .3em;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 11px;
+                left: 1em;
+                width: 1em;
+                border-bottom: 3px solid $brand-primary;
+            }
+        }
+    }
+
+    ul.list-inline {
+        li {
+            padding: 0 1em;
+        }
+    }
+
+    form {
+        margin-bottom: 5em;
+
+        input,
+        select,
+        textarea,
+        button {
+            border-radius: 0;
+        }
+    }
+
+    .alert {
+        border-radius: 0;
+    }
 }

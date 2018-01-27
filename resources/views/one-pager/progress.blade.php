@@ -1,6 +1,6 @@
 {{-- WOWPROGRESS ranking if available --}}
 @if(is_array($guildRank) && array_key_exists('world_rank', $guildRank) && array_key_exists('area_rank', $guildRank) && array_key_exists('realm_rank', $guildRank))
-	<section class="module module--wow-progress">
+	<section class="module module--wow-progress" id="progress">
 		<div class="overlay">
 
 			<h2 class="tier text-center">Tier 21</h2>

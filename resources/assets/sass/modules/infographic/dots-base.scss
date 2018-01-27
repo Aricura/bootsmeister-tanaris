@@ -1,0 +1,40 @@
+// variables
+@import "../../variables";
+
+// Base Dot
+.dot {
+    padding: .25rem;
+    border-radius: 100%;
+    overflow: hidden;
+    font-size: 0;
+
+    &::before {
+        content: '';
+
+        display: block;
+        width: 1rem;
+        height: 1rem;
+
+        border-radius: inherit;
+    }
+}
+
+// Base Dot [FOCUS + HOVER]
+.dot:focus,
+.dot:hover {
+    z-index: 1;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem transparentize($brand-primary, .5);
+}
+
+// Base Dot [HOVER]
+.dot:hover {
+    cursor: pointer;
+}
+
+// Base Dot [ACTIVE]
+.dot.is-active {
+    z-index: 1;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem transparentize($brand-primary, .5);
+}

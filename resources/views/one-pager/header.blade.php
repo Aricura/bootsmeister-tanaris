@@ -1,4 +1,4 @@
-<header class="navbar navbar-inverse">
+<header class="navbar navbar-inverse" id="header">
 	<div class="container">
 
 		<div class="navbar-header">
@@ -21,9 +21,9 @@
 		<div class="collapse navbar-collapse" id="header-nav">
 			{{-- Navigation right --}}
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="javascript:void(0);">Progress</a></li>
-				<li><a href="javascript:void(0);">Team</a></li>
-				<li><a href="javascript:void(0);">Recruitment</a></li>
+				<li><a class="js-smooth-scroll" href="#progress">Progress</a></li>
+				<li><a class="js-smooth-scroll" href="#team">Team</a></li>
+				<li><a class="js-smooth-scroll" href="#recruitment">Recruitment</a></li>
 			</ul>
 		</div>
 	</div>

@@ -5,4 +5,16 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
+require('./smoothScroll');
+require('./header');
+require('./infographic');
+
+
+
+jQuery(function() {
+	window.SmoothScroll.initialize();
+	window.Header.initialize();
+	window.Infographic.initialize();
+});

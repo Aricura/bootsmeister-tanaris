@@ -1,0 +1,14 @@
+// Base Image
+.image {
+    display: block;
+    width: 100%;
+
+    img {
+        display: block;
+        width: 100%;
+
+        opacity: 1;
+        transition: opacity 250ms ease-out;
+        will-change: opacity;
+    }
+}

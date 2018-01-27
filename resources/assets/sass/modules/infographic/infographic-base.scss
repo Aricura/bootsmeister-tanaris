@@ -1,0 +1,84 @@
+// Base Infographic
+.infographic {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__header,
+    &__wheel,
+    &__content {
+        flex-basis: 100%;
+        flex-grow: 1;
+    }
+
+    &__header,
+    &__wheel {
+        margin-bottom: 2rem;
+    }
+
+    &__content {
+        .heading {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .panel {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+
+        .button {
+            margin-top: 2rem;
+        }
+    }
+
+    .wheel {
+        max-width: calc(12rem + 3vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: 50rem) {
+        margin-left: -2rem;
+        margin-right: -2rem;
+
+        &__header,
+        &__wheel,
+        &__content {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        &__wheel {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+
+        &__content {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+    }
+
+    @media (min-width: 80rem) {
+        flex-wrap: nowrap;
+
+        &__header,
+        &__wheel,
+        &__content {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+
+        &__header,
+        &__wheel {
+            margin-bottom: 0;
+        }
+
+        &__wheel {
+            flex-grow: 1.5;
+        }
+    }
+}

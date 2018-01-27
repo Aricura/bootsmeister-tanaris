@@ -2,5 +2,12 @@
 @import "../variables";
 
 .module--imprint {
+    padding: .5em 0;
+    background-color: $text-color;
 
+    ul {
+        li {
+            color: #6a7176;
+        }
+    }
 }

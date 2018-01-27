@@ -1,6 +1,77 @@
 // variables
 @import "../variables";
 
+@import "infographic/infographic-base";
+@import "infographic/infographic-large";
+
+@import "infographic/wheel-basic";
+@import "infographic/wheel-default";
+@import "infographic/wheel-type-dots";
+
+@import "infographic/dots-base";
+@import "infographic/dots-default";
+
+@import "infographic/image-base";
+@import "infographic/image-shape-circle";
+
+
 .module--wheel {
-    height: 100vh;
+    padding: 10em;
+    min-height: 100vh;
+
+    .infographic {
+        align-items: flex-start;
+        margin-top: 5em;
+
+        &__header {
+            h2 {
+                text-align: left;
+            }
+
+            hr {
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        &__wheel {
+            .wheel {
+                &__spoke {
+                    .dot {
+                        &--default {
+                            border: none;
+                            background-color: transparent;
+
+                            &:before {
+                                width: 18px;
+                                height: 18px;
+                                background-color: $brand-primary;
+                            }
+                        }
+                    }
+                }
+                &__image {
+                    &.is-active {
+                        .image {
+                            height: 100%;
+
+                            img {
+                                max-height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &__content {
+            .panel {
+                background-color: $body-bg;
+                border: none;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    }
 }

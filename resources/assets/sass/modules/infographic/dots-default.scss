@@ -1,0 +1,8 @@
+// Default Dot
+.dot--default {
+    color: inherit;
+
+    &::before {
+        background-color: currentColor;
+    }
+}

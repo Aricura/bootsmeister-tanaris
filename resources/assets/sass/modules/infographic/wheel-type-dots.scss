@@ -1,0 +1,35 @@
+// Dots Wheel
+@for $i from 1 through 8 {
+    .wheel--#{$i} {
+        .wheel {
+            &__spoke {
+                transition-delay: 0ms;
+
+                @for $j from 1 through $i {
+                    &:nth-child(#{$j}) {
+                        transform: rotate(#{360 / $i * ($j - 1)}deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Dots Wheel [ACTIVE]
+@for $i from 1 through 8 {
+    .wheel--#{$i}.is-active {
+        .wheel {
+            &__spoke {
+                @for $j from 1 through $i {
+                    &:nth-child(#{$j}) {
+                        transition-delay: #{(250 + (3000 / ($i + 1) * ($j - 1)))}ms;
+
+                        .dot {
+                            animation-delay: #{(250 + (3000 / ($i + 1) * ($j - 1)))}ms;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

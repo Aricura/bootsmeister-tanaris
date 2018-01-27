@@ -1,0 +1,134 @@
+// variables
+@import "../../variables";
+
+// Default Wheel
+.wheel--default {
+    background-color: $body-bg;
+
+    .wheel {
+        &__circle {
+            //animation-name: wheel-circle;
+            animation-duration: 3000ms;
+            animation-delay: 250ms;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+
+            stroke-dasharray: 1155;
+            stroke-dashoffset: 1155;
+
+            transform: rotate(.1deg);
+
+            .is-ios &,
+            .is-trident &,
+            .is-edgehtml & {
+                stroke-dasharray: 0;
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+
+    .dot {
+        transform: translate(-50%, -50%) scale(0);
+
+        //animation-name: wheel-base-dot-reveal;
+        animation-duration: 500ms;
+        animation-timing-function: cubic-bezier(.175, .885, .43, 1.545);
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+
+        &.is-enabled {
+            transform: translate(-50%, -50%) scale(1);
+            animation-duration: 0ms;
+
+            .is-edgehtml & {
+                animation-name: wheel-base-dot-active !important;
+                transform: translate(-50%, -50%) scale(1) !important;
+            }
+        }
+
+        &.is-active {
+            animation-name: wheel-base-dot-active;
+            animation-delay: 0ms !important;
+            animation-duration: 500ms !important;
+        }
+
+        .is-ie & {
+            animation-name: none !important;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    .icon--emblem {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+
+        width: 33.333%;
+
+        transform: translate(-50%, -50%);
+
+        opacity: 0;
+        transition: opacity 250ms ease-out;
+    }
+}
+
+// Default Wheel [ACTIVE]
+.wheel--default.is-active {
+    .wheel {
+        &__circle {
+            //animation-play-state: running;
+            animation-name: wheel-circle;
+        }
+    }
+
+    .dot {
+        //animation-play-state: running;
+        animation-name: wheel-base-dot-reveal;
+    }
+
+    .icon--emblem {
+        opacity: 1;
+    }
+}
+
+// Animations
+@keyframes wheel-circle {
+    0% {
+        stroke-dashoffset: 1155;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes wheel-base-dot-reveal {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes wheel-base-dot-active {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    33% {
+        transform: translate(-50%, -50%) scale(1.35);
+    }
+
+    66% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+}
