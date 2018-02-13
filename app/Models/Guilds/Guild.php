@@ -156,12 +156,14 @@ class Guild extends Model {
 		foreach($response['members'] as $guildMember) {
 			// check if the guild member is valid
 			if (!is_array($guildMember) || !array_key_exists('character', $guildMember) || !array_key_exists('rank', $guildMember) || !is_array($guildMember['character']) || !count($guildMember['character'])) {
+				\Log::debug('Guild Seeder: Invalid Character.');
 				continue;
 			}
 			// extract all character information of this guild member
 			$character = $guildMember['character'];
 			// check if all required attributes of the character / guild member exists
 			if (!array_key_exists('name', $character) || !array_key_exists('realm', $character) || !array_key_exists('class', $character) || !array_key_exists('race', $character) || !array_key_exists('gender', $character) || !array_key_exists('level', $character) || !array_key_exists('achievementPoints', $character) || !array_key_exists('thumbnail', $character) || !array_key_exists('lastModified', $character)) {
+				\Log::debug('Guild Seeder: Invalid Character Attributes.');
 				continue;
 			}
 			// try to find the realm by its name
@@ -171,14 +173,36 @@ class Guild extends Model {
 				$realm = Realm::findBySlug($character['realm']);
 				// abort if the realm can not ne found
 				if (!$realm->exists) {
+					\Log::debug('Guild Seeder: Invalid Character Realm. ' . $character['name']);
 					continue;
 				}
 			}
+
+			// convert the id of new races
+			switch(intval($character['race'])) {
+				case 27: // Nightborne
+					$raceId = 16;
+					break;
+				case 28: // Highmountain Tauren
+					$raceId = 16;
+					break;
+				case 29: // Void Elf
+					$raceId = 16;
+					break;
+				case 30: // Lightforged Draenei
+					$raceId = 16;
+					break;
+				default:
+					$raceId = intval($character['race']);
+					break;
+			}
+
 			// get the character's race
 			/** @var CharacterRace $characterRace */
-			$characterRace = CharacterRace::query()->findOrNew(intval($character['race']));
+			$characterRace = CharacterRace::query()->findOrNew($raceId);
 			// abort if the race is unknown
 			if (!$characterRace->exists) {
+				\Log::debug('Guild Seeder: Invalid Character Race. ' . $character['name']);
 				continue;
 			}
 			// get the character's class
@@ -186,6 +210,7 @@ class Guild extends Model {
 			$characterClass = CharacterClass::query()->findOrNew(intval($character['class']));
 			// abort if the class is unknown
 			if (!$characterClass->exists) {
+				\Log::debug('Guild Seeder: Invalid Character Class. ' . $character['name']);
 				continue;
 			}
 			// try to load an existing guild member by the guild and character name

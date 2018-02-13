@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\GuildUpdater;
 use App\Console\Commands\MemberAdd;
 use App\Console\Commands\MemberRemove;
+use App\Console\Commands\ResourcesUpdater;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+    	ResourcesUpdater::class,
         GuildUpdater::class,
 		MemberAdd::class,
 		MemberRemove::class,
@@ -36,6 +38,7 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule) {
+		$schedule->command('resources:updater')->daily();
 		$schedule->command('guild:updater')->hourly();
     }
 
