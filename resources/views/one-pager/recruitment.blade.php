@@ -98,7 +98,6 @@
 		<p class="lead text-center">Alternativ kannst du dich auch ingame melden bei</p>
 		<ul class="list-unstyled list-inline text-center">
 			<li><strong>Ize#2567</strong></li>
-			<li><strong>Elco#2355</strong></li>
 			<li><strong>Xera#2750</strong></li>
 			<li><strong>Aricura#2357</strong></li>
 		</ul>

@@ -15,7 +15,9 @@
 						@foreach($raidMemberCollection as $role => $raidMembers)
 							{{-- Loop through all raid members of this role --}}
 							@foreach($raidMembers as $raidMember)
-								@include('component.team.carousel-item', ['raidMember' => $raidMember])
+								@if(null !== $raidMember && null !== $raidMember->GuildMember)
+									@include('component.team.carousel-item', ['raidMember' => $raidMember])
+								@endif
 							@endforeach
 						@endforeach
 					</div>
@@ -37,7 +39,9 @@
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				{{-- Loop thorugh all roles --}}
 				@foreach($raidMemberCollection as $role => $raidMembers)
-					@include('component.team.list', ['role' => $role, 'raidMembers' => $raidMembers])
+					@if(null !== $raidMember && null !== $raidMember->GuildMember && null !== $raidMember->Spec)
+						@include('component.team.list', ['role' => $role, 'raidMembers' => $raidMembers])
+					@endif
 				@endforeach
 			</div>
 

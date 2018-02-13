@@ -136,7 +136,8 @@ class Guild extends Model {
 	}
 
 	/**
-	 * Seeds all guild members of this guild and further updates/pre-fills all available character specs according to the current spec of the guild member.
+	 * Seeds all guild members of this guild and further updates/pre-fills all available character specs according to
+	 * the current spec of the guild member.
 	 *
 	 * @author Stefan Herndler
 	 * @since 1.0.0
@@ -205,28 +206,18 @@ class Guild extends Model {
 				$newGuildMember->last_modified = new Carbon(date('Y-m-d H:i:s', intval($character['lastModified']) / 1000));
 			}
 			$newGuildMember->save();
-			// update the collection of character specs
-			if (!array_key_exists('spec', $character) || !is_array($character['spec']) || !count($character['spec'])) {
-				continue;
-			}
-			/*
-			// extract all spec information
-			$characterSpec = $character['spec'];
-			// check if all required information of this spec exists
-			if (!array_key_exists('name', $characterSpec) || !array_key_exists('backgroundImage', $characterSpec) || !array_key_exists('icon', $characterSpec)) {
-				continue;
-			}
-			// create / update the character's spec
-			 CharacterSpec::createModel($characterClass, $characterSpec['name'], $characterSpec['backgroundImage'], $characterSpec['icon']);
-			*/
 		}
 
 		// delete all guild members which were not updated after this seed (last updated 1 day ago or older)
 		// the deletion will only be executed if at least 1 guild member was fetched by the battle.net API to avoid connection errors
-		GuildMember::query()
+		$guildMembers = GuildMember::query()
 			->where('guild_id', '=', $this->getKey())
 			->where('updated_at', '<=', (new Carbon())->subDay(1))
-			->delete();
+			->get();
+		/** @var \App\Models\Guilds\GuildMember $guildMember */
+		foreach($guildMembers as $guildMember) {
+			$guildMember->delete();
+		}
 		// guild members are successfully fetched / synchronized
 		return true;
 	}
