@@ -180,6 +180,18 @@ class Guild extends Model {
 
 			// convert the id of new races
 			switch(intval($character['race'])) {
+				case 22: // Worgen
+					$raceId = 12;
+					break;
+				case 24: // Pandaren neutral
+					$raceId = 13;
+					break;
+				case 25: // Pandaren alliance
+					$raceId = 14;
+					break;
+				case 26: // Pandaren horde
+					$raceId = 15;
+					break;
 				case 27: // Nightborne
 					$raceId = 16;
 					break;
