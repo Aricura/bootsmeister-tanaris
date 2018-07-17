@@ -16,7 +16,7 @@
 							{{-- Loop through all raid members of this role --}}
 							@foreach($raidMembers as $raidMember)
 								@if(null !== $raidMember && null !== $raidMember->GuildMember)
-									@include('component.team.carousel-item', ['raidMember' => $raidMember])
+									@include('component.team.carousel-item', ['raidMember' => $raidMember, 'active' => $loop->first])
 								@endif
 							@endforeach
 						@endforeach
