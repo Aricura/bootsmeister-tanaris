@@ -20,7 +20,6 @@
 				<ul class="list-unstyled">
 					<li><a target="_blank" href="https://www.twitch.tv/aricura_">Twitch - <span class="druid">Aricura</span></a></li>
 					<li><a target="_blank" href="https://www.twitch.tv/xerafista">Twitch - <span class="priest">Wombocombo</span></a></li>
-					<li><a target="_blank" href="https://www.twitch.tv/yawsz">Twitch - <span class="warlock">Yawsz</span></a></li>
 				</ul>
 			</div>
 

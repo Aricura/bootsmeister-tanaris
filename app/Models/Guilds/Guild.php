@@ -247,14 +247,14 @@ class Guild extends Model {
 
 		// delete all guild members which were not updated after this seed (last updated 1 day ago or older)
 		// the deletion will only be executed if at least 1 guild member was fetched by the battle.net API to avoid connection errors
-		$guildMembers = GuildMember::query()
+		/*$guildMembers = GuildMember::query()
 			->where('guild_id', '=', $this->getKey())
 			->where('updated_at', '<=', (new Carbon())->subDay(1))
 			->get();
 		/** @var \App\Models\Guilds\GuildMember $guildMember */
-		foreach($guildMembers as $guildMember) {
+		/*foreach($guildMembers as $guildMember) {
 			$guildMember->delete();
-		}
+		}*/
 		// guild members are successfully fetched / synchronized
 		return true;
 	}

@@ -2,8 +2,10 @@
 @import "../variables";
 
 .module--team {
+    background-image: url('/images/background/tanaris.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-    background: #777777 url('/images/background/tanaris.jpg') no-repeat fixed center center;
     padding: 6em 0 8em;
 
     h2 {
