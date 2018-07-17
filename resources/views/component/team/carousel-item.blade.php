@@ -1,5 +1,5 @@
 {{-- The guild leader will be the first active slider (guild rank = 0) --}}
-<div class="item @if($active0) active @endif" id="team-carousel--{{ $raidMember->guild_member_id }}">
+<div class="item @if($active) active @endif" id="team-carousel--{{ $raidMember->guild_member_id }}">
 
 	{{-- Character image --}}
 	<img src="{{ $raidMember->GuildMember->getProfilePicture() }}" alt="{{ $raidMember->GuildMember->name }}" class="img-responsive">
